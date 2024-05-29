@@ -47,6 +47,17 @@ func Spider() {
 	// #content > div > div.article > ol > li:nth-child(1) > div > div.info > div.hd > a > span:nth-child(1)
 	doc.Find("#content > div > div.article > ol > li").Each(func(i int, s *goquery.Selection) {
 		title := s.Find("div > div.info > div.hd > a > span:nth-child(1)").Text()
-		fmt.Println(title)
+		img := s.Find("div > div.pic > a > img").AttrOr("src", "")
+		info := s.Find("div > div.info > div.bd > p:nth-child(1)").Text()
+		score := s.Find("div > div.info > div.bd > div > span.rating_num").Text()
+		quote := s.Find("div > div.info > div.bd > p.quote > span").Text()
+
+		fmt.Println("title:", title)
+		fmt.Println("img:", img)
+		fmt.Println("info:", info)
+		fmt.Println("score:", score)
+		fmt.Println("quote:", quote)
 	})
+
+	
 }
